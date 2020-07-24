@@ -1,5 +1,11 @@
 package vn.triplet.dao;
 
-public interface UserDAO {
+import java.util.List;
 
+import vn.triplet.model.User;
+
+public interface UserDAO extends BaseDAO<Integer, User> {
+	
+	List<User> loadUsers();
+	
 }

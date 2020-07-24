@@ -9,9 +9,25 @@
 	<configs>
 		<config>src/main/webapp/WEB-INF/configs/applicationContext.xml</config>
 		<config>src/main/webapp/WEB-INF/triplet-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/configs/spring-dao.xml</config>
+		<config>src/main/webapp/WEB-INF/configs/spring-service.xml</config>
+		<config>src/main/webapp/WEB-INF/configs/spring-datasource.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
 	<configSets>
+		<configSet>
+			<name><![CDATA[web-context]]></name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/main/webapp/WEB-INF/configs/applicationContext.xml</config>
+				<config>src/main/webapp/WEB-INF/configs/spring-dao.xml</config>
+				<config>src/main/webapp/WEB-INF/configs/spring-datasource.xml</config>
+				<config>src/main/webapp/WEB-INF/configs/spring-service.xml</config>
+			</configs>
+			<profiles>
+			</profiles>
+		</configSet>
 	</configSets>
 </beansProjectDescription>

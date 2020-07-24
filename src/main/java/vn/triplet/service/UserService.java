@@ -1,5 +1,11 @@
 package vn.triplet.service;
 
-public interface UserService {
+import java.util.List;
 
+import vn.triplet.model.User;
+
+public interface UserService extends BaseService<Integer, User>{
+	
+	List<User> loadUsers();
+	
 }

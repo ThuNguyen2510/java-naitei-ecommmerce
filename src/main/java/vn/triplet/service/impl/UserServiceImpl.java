@@ -1,5 +1,37 @@
 package vn.triplet.service.impl;
 
-public class UserServiceImpl {
+import java.io.Serializable;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import vn.triplet.model.User;
+import vn.triplet.service.UserService;
+
+public class UserServiceImpl extends BaseServiceImpl implements UserService {
+
+	@Override
+	public User findById(Serializable key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User saveOrUpdate(User entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(User entity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<User> loadUsers() {
+		System.out.println(getUserDAO().loadUsers());
+		return getUserDAO().loadUsers();
+	}
 
 }
