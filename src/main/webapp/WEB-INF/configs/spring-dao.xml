@@ -29,5 +29,8 @@
 	<bean id="RateDAO" class="vn.triplet.dao.impl.RateDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
+	
+	<bean id="CategoryDAO" class="vn.triplet.dao.impl.CategoryDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>

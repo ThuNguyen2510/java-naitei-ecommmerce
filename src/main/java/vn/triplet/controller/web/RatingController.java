@@ -1,5 +1,6 @@
 package vn.triplet.controller.web;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -18,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.triplet.bean.RateInfo;
 import vn.triplet.model.Product;
 import vn.triplet.model.Rate;
+import vn.triplet.model.User;
+
 import org.springframework.beans.factory.annotation.Value;
 
 import vn.triplet.service.ProductService;
@@ -26,7 +29,7 @@ import vn.triplet.service.RateService;
 @PropertySource("classpath:messages.properties")
 @Controller
 @RequestMapping("/ratings")
-public class RatingController {
+public class RatingController extends BaseController {
 
 	@Autowired
 	private RateService rateService;
@@ -47,20 +50,23 @@ public class RatingController {
 
 	@PostMapping("/add")
 	public String index(@ModelAttribute("newRate") RateInfo rating, @RequestParam("productId") Integer productId,
-			HttpSession session, final RedirectAttributes redirectAttributes) {
+			HttpSession session, final RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("save rating");
 		Product product = productService.findById(productId);
 		if (product == null) {
 			redirectAttributes.addFlashAttribute("messages_product_null", messages_product_null);
 			return "redirect:/";
 		}
-		if (rating.getValue() == null) {
-			redirectAttributes.addFlashAttribute("value_rate_null", null_value_rate);
-		} else if (rateService.createReview(rating, product,
-				Integer.parseInt(session.getAttribute("currentUser").toString()))) {
-			redirectAttributes.addFlashAttribute("rating_success", rating_success);
+		User user = loadCurrentUser(request);
+		if (user != null) {
+			if (rating.getValue() == null) {
+				redirectAttributes.addFlashAttribute("value_rate_null", null_value_rate);
+			} else if (rateService.createReview(rating, product, user)) {
+				redirectAttributes.addFlashAttribute("rating_success", rating_success);
+			}
+			return "redirect:/products/" + productId;
 		}
-		return "redirect:/products/" + productId;
+		return "redirect:/login";
 
 	}
 

@@ -11,5 +11,7 @@ public interface ProductDAO extends BaseDAO<Integer, Product> {
 	List<Product> loadProductWithCategoryId(int categoryId, int productId);
 	
 	List<Product> loadProductWithListProductId(List<Integer> ids);
+	
+	List<Product> loadFullProducts();
 		
 }

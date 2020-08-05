@@ -40,8 +40,12 @@ public class ProductServiceImpl extends BaseServiceImpl implements ProductServic
 
 	@Override
 	public Product saveOrUpdate(Product entity) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return getProductDAO().saveOrUpdate(entity);
+		} catch (Exception e) {
+			logger.error(e);
+			throw e;
+		}
 	}
 
 	@Override
@@ -84,6 +88,12 @@ public class ProductServiceImpl extends BaseServiceImpl implements ProductServic
 			logger.error(e);
 			return null;
 		}
+	}
+
+	@Override
+	public List<Product> loadFullProducts() {
+		
+		return  Converter.parseInformationOfProduct(getProductDAO().loadFullProducts());
 	}
 
 

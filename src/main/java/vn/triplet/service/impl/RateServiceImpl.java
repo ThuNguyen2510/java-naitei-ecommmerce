@@ -58,10 +58,9 @@ public class RateServiceImpl extends BaseServiceImpl implements RateService {
 	}
 
 	@Override
-	public boolean createReview(RateInfo rate, Product product,Integer userId) {
+	public boolean createReview(RateInfo rate, Product product,User user) {
 		try {
 			logger.info("save service");
-			User user = getUserDAO().findById(userId);
 			Rate newRating = new Rate();
 			newRating.setUser(user);
 			newRating.setProduct(product);

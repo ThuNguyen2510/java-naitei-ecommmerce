@@ -86,6 +86,13 @@ public class ProductDAOImpl extends GenericDAO<Integer, Product> implements Prod
 		}
 		return products;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> loadFullProducts() {
+		
+		return getSession().createQuery("FROM Product").getResultList();
+	}
 	
 	
 	
