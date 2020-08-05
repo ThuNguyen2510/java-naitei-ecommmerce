@@ -146,6 +146,15 @@
 												<p th:text=${product.category.name}></p>
 											</div>
 										</div>
+										
+										<div class="row">
+											<div class="col-md-4">
+												<label>Status</label>
+											</div>
+											<div class="col-md-8">
+												<p th:text="${product.delete_time==null}?'Deleted':'Available'"></p>
+											</div>
+										</div>
 									</div>
 									<div class="col-md-2">
 

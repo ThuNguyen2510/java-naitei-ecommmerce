@@ -54,7 +54,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="rem1" th:each="item,iter : ${orderitems}">
+							<tr  th:if="${orderitems!=null}"class="rem1" th:each="item,iter : ${orderitems}">
 								<form th:object="${item}"
 									th:action="@{'/cart/update/'+${item.productId}}">
 								<td class="invert" th:text="${iter.index+1}"></td>
@@ -109,7 +109,7 @@
 							class="creditly-card-form shopf-sear-headinfo_form">
 							<div class="creditly-wrapper wrapper">
 								<div class="information-wrapper">
-									<a th:href="@{/products}" class="btn btn-warning"><i
+									<a th:href="@{/}" class="btn btn-warning"><i
 										class="fa fa-angle-left"></i> Continue Shopping</a>
 									<button class="submit check_out">Proceed to checkout</button>
 								</div>
